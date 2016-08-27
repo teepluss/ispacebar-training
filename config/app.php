@@ -166,7 +166,8 @@ return [
         /*
          * Package Service Providers...
          */
-        Teepluss\Demo\DemoServiceProvider::class,
+        //Teepluss\Demo\DemoServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -227,7 +228,8 @@ return [
         /*
          * Another packages...
          */
-        'DR' => Teepluss\Demo\Facades\DR::class,
+        //'DR' => Teepluss\Demo\Facades\DR::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

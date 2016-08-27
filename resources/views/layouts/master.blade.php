@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,7 +25,7 @@
 
     @include('partials.navbar')
 
-    <div class="container">
+    <div class="container" id="content">
 
       @yield('content')
 
