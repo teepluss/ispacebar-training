@@ -42,7 +42,7 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
+                    <li><a href="{{ route('admin.blogs.index') }}">Blogs</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -81,6 +81,5 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
-    @stack('scripts')
 </body>
 </html>

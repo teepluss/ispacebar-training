@@ -1,0 +1,23 @@
+{
+  "name": "101",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Teepluss <admin@jquerytips.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/teepluss/ispacebar-training",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "vue": "^1.0.26",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "fontawesome#^4.6.3"
+  }
+}

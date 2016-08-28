@@ -13,10 +13,8 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {   //@datetime
-        Blade::directive('datetime', function($expression) {
-            return "<?php echo $expression->format('m/d/Y H:i'); ?>";
-        });
+    {
+        //
     }
 
     /**
@@ -26,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // $this->app->when('App\Http\Controllers\Admin\BlogsController')
+        //           ->needs('$variableName')
+        //           ->give('Tee');
 
     }
 }

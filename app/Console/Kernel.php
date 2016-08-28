@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\Bootstrap::class
+        \App\Console\Commands\Bootstrap::class,
+        \App\Console\Commands\Logging::class
     ];
 
     /**
@@ -24,8 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('logging:log')
+                 ->everyMinute();
+                 //->timezone('Asia/Bangkok');
     }
 
     /**

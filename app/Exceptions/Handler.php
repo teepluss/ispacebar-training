@@ -32,6 +32,8 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+
+
         parent::report($exception);
     }
 
@@ -44,6 +46,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // if ($exception instanceof \Symfony\Component\Debug\Exception\FatalThrowableError) {
+        //     //return view('errors.custom');
+        //     return response()->view('errors.custom', [], 500);
+        // }
         return parent::render($request, $exception);
     }
 
