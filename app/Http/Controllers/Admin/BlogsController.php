@@ -6,6 +6,7 @@ use App\Models\Blog;
 //use Illuminate\Http\Request;
 use App\Http\Requests\StoreBlogPost;
 use App\Http\Requests\UpdateBlogPost;
+use App\Events\BlogCreated as BlogCreatedEvent;
 
 class BlogsController extends BaseAdminController
 {
@@ -16,15 +17,12 @@ class BlogsController extends BaseAdminController
 
     public function index()
     {
-
-
         // Eager load user data.
-        $blogs = Blog::with('user');
+        $blogs = Blog::with('user', 'user.roles');
 
         if (request()->has('approved')) {
             $blogs->approved();
         }
-
         $blogs = $blogs->paginate();
 
         return view('admin.blogs.index', [
@@ -45,8 +43,7 @@ class BlogsController extends BaseAdminController
         $authUser = $request->user();
         $blog->user()->associate($authUser)->save();
 
-        // \Mail::to('teepluss@101.dev')
-        //     ->send(new \App\Mail\BlogPosted());
+        event(new BlogCreatedEvent($blog));
 
         return redirect()->route('admin.blogs.index')
                     ->with('success', 'Blog has been created');

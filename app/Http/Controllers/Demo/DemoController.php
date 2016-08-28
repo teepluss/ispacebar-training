@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Demo;
 
+use Gate;
 use App\Http\Controllers\Controller;
 
 use Teepluss\Demo\Facades\DR;
@@ -9,10 +10,16 @@ use Teepluss\Demo\Contracts\Request as DemoRequest;
 
 class DemoController extends Controller
 {
-    // public function index(DemoRequest $demo)
-    // {
-    //     return view('demo.index');
-    // }
+    /**
+     * Variable inject from AppServiceProvider.
+     *
+     * @param string $variableName
+     */
+    public function __construct($variableName)
+    {
+        // Return iSpacebar
+        //dump($variableName);
+    }
 
     /**
      * Laravel collection
@@ -34,9 +41,23 @@ class DemoController extends Controller
 
     public function sms()
     {
+        //$sms = app()->make('SMSService');
         $sms = resolve('SMSService');
+
         $response = $sms->to('08766554433')->message('Hi')->send();
 
         dump($response);
+    }
+
+    public function user()
+    {
+        $user = \App\User::find(1);
+
+
+
+        $allowed = $user->can('blogs.write');
+
+        dump($user->getPermissions());
+        dump($allowed);
     }
 }

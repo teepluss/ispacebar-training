@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Blog' => 'App\Policies\BlogPolict',
     ];
 
     /**
@@ -25,6 +25,16 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        $gates = [
+            'blogs.write',
+            'blogs.delete',
+            'blogs.approve'
+        ];
+
+        foreach ($gates as $gate) {
+            Gate::define($gate, function ($user) use ($gate) {
+                return $user->hasPermission($gate);
+            });
+        }
     }
 }

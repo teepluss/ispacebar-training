@@ -41,6 +41,10 @@
                                 <td>
                                     <span class="fullname">
                                         {{ $blog->user->fullname }}
+                                        (<small>
+                                        {{ implode(', ', $blog->user->roles->pluck('name')->toArray()) }}
+                                        </small>)
+
                                     </span>
                                 </td>
                                 <td>

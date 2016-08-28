@@ -45,6 +45,12 @@
                                 <button type="submit" class="btn btn-primary">
                                     Create
                                 </button>
+                                @can('blogs.approve')
+                                <label class="checkbox">
+                                    <input type="checkbox" name="approve" value="1">
+                                    Approve this blog
+                                </label>
+                                @endcan
                             </div>
                         </div>
                     </form>

@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Traits\UserPermissions;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, UserPermissions;
 
     /**
      * The attributes that are mass assignable.
@@ -49,5 +50,10 @@ class User extends Authenticatable
     public function blogs()
     {
         return $this->hasMany(\App\Models\Blog::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(\App\Models\Role::class, 'role_user');
     }
 }
