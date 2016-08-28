@@ -2,8 +2,17 @@
 
 namespace App\Support\SMS;
 
+//use App\Support\SMS\Contracts\SenderInterface;
+
 class Sender
 {
+    /**
+     * SMS provider.
+     *
+     * @var object
+     */
+    protected $provider;
+
     /**
      * Mobile number to send SMS.
      *
@@ -19,14 +28,24 @@ class Sender
     protected $message;
 
     /**
+     * Reguster provider.
+     *
+     * @param object $provider
+     */
+    public function __construct($provider)
+    {
+        $this->provider = $provider;
+    }
+
+    /**
      * Reciever number
      *
      * @param  integer $number [
      * @return object         [
      */
-    public function to($number)
+    public function to($to)
     {
-        $this->to = $number;
+        $this->to = $to;
 
         return $this;
     }
@@ -51,6 +70,7 @@ class Sender
      */
     public function send()
     {
-        return "Message ".$this->message. " sent to ".$this->to;
+        return $this->provider->send($this->to, $this->message);
+        //return "Message ".. " sent to ".$this->to;
     }
 }

@@ -78,7 +78,7 @@ class Blog extends Model
      */
     public function scopeApproved($query)
     {
-        return $query->whereNotNull('approved');
+        return $query->whereNotNull('approved_at');
     }
 
     /**

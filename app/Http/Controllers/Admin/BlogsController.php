@@ -16,8 +16,16 @@ class BlogsController extends BaseAdminController
 
     public function index()
     {
+
+
         // Eager load user data.
-        $blogs = Blog::with('user')->paginate();
+        $blogs = Blog::with('user');
+
+        if (request()->has('approved')) {
+            $blogs->approved();
+        }
+
+        $blogs = $blogs->paginate();
 
         return view('admin.blogs.index', [
             'blogs' => $blogs
@@ -78,5 +86,21 @@ class BlogsController extends BaseAdminController
 
         return redirect()->route('admin.blogs.index')
                     ->with('success', 'Blog has been delete');
+    }
+
+    /**
+     * Approve content.
+     *
+     * @param  integer $id
+     * @return void
+     */
+    public function approve($id)
+    {
+        $blog = Blog::findOrFail($id);
+        $blog->approved_at = \Carbon\Carbon::now();
+        $blog->save();
+
+        return redirect()->route('admin.blogs.index')
+                    ->with('success', 'Content '.$blog->title. ' has been approved.');
     }
 }

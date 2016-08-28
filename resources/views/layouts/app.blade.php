@@ -42,7 +42,9 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ route('admin.blogs.index') }}">Blogs</a></li>
+                    @foreach($navigations as $name => $link)
+                    <li><a href="{{ route($link) }}">{{ $name }}</a></li>
+                    @endforeach
                 </ul>
 
                 <!-- Right Side Of Navbar -->

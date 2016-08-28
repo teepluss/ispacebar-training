@@ -51,6 +51,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'mi
             'uses' => 'BlogsController@destroy'
         ])
         ->where('id', '[0-9]+');
+
+        Route::get('{id}/approve', [
+            'as' => 'approve',
+            'uses' => 'BlogsController@approve'
+        ])
+        ->where('id', '[0-9]+');
     });
 
 });

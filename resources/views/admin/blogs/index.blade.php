@@ -11,7 +11,9 @@
                 <div class="panel-heading clearfix">
                     Posts
                     <div class="pull-right">
-                        <a href="{{ route('admin.blogs.create') }}" class="btn btn-primary">Create</a>
+                        <a href="{{ route('admin.blogs.index') }}">Filter: all</a> |
+                        <a href="{{ route('admin.blogs.index', ['approved' => 1]) }}">Filter: approved</a> |
+                        <a href="{{ route('admin.blogs.create') }}">Create</a>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -43,6 +45,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.blogs.edit', $blog->id) }}">edit</a> |
+                                    <a href="{{ route('admin.blogs.approve', $blog->id) }}">approve</a> |
                                     <a href="{{ route('admin.blogs.delete', $blog->id) }}">delete</a>
                                     {{--<form class="form-inline" style="display:inline" method="post" action="{{ route('admin.blogs.delete', ['id' => $blog->id]) }}">
                                         <input type="hidden" name="_method" value="delete">

@@ -34,7 +34,7 @@ class DemoController extends Controller
 
     public function sms()
     {
-        $sms = new \App\Support\SMS\sender();
+        $sms = resolve('SMSService');
         $response = $sms->to('08766554433')->message('Hi')->send();
 
         dump($response);
