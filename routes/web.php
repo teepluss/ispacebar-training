@@ -46,9 +46,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'mi
         ])
         ->where('id', '[0-9]+');
 
-        Route::get('{id}/delete', [
+        Route::delete('{id}/delete', [
             'as' => 'delete',
-            'uses' => 'BlogsController@delete'
+            'uses' => 'BlogsController@destroy'
         ])
         ->where('id', '[0-9]+');
     });
@@ -61,6 +61,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'mi
 Route::group(['namespace' => 'Demo', 'prefix' => 'demo'], function() {
     Route::get('/', 'DemoController@index');
     Route::get('/collect', 'DemoController@collect');
+    Route::get('/sms', 'DemoController@sms');
 });
 
 Auth::routes();

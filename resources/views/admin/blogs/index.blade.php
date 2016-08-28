@@ -21,6 +21,7 @@
                                 <th>#</th>
                                 <th>Title</th>
                                 <th>Created</th>
+                                <th>Author</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -36,8 +37,18 @@
                                     }}
                                 </td>
                                 <td>
+                                    <span class="fullname">
+                                        {{ $blog->user->fullname }}
+                                    </span>
+                                </td>
+                                <td>
                                     <a href="{{ route('admin.blogs.edit', $blog->id) }}">edit</a> |
-                                    <a href="{{ route('admin.blogs.delete', ['id' => $blog->id]) }}">delete</a>
+                                    <a href="{{ route('admin.blogs.delete', $blog->id) }}">delete</a>
+                                    {{--<form class="form-inline" style="display:inline" method="post" action="{{ route('admin.blogs.delete', ['id' => $blog->id]) }}">
+                                        <input type="hidden" name="_method" value="delete">
+                                        {{ csrf_field() }}
+                                        <input type="submit" value="delete">
+                                    </form>--}}
                                 </td>
                             </tr>
                             @endforeach

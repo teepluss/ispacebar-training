@@ -27,6 +27,25 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'fullname'
+    ];
+
+    /**
+     * Fullname accessor.
+     *
+     * @return string concat firstname and lastname.
+     */
+    public function getFullnameAttribute()
+    {
+        return $this->attributes['first_name'].' '.$this->attributes['last_name'];
+    }
+
     public function blogs()
     {
         return $this->hasMany(\App\Models\Blog::class);

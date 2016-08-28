@@ -16,6 +16,7 @@ class BlogsController extends BaseAdminController
 
     public function index()
     {
+        // Eager load user data.
         $blogs = Blog::with('user')->paginate();
 
         return view('admin.blogs.index', [
@@ -72,6 +73,10 @@ class BlogsController extends BaseAdminController
      */
     public function destroy($id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+        $blog->delete();
+
+        return redirect()->route('admin.blogs.index')
+                    ->with('success', 'Blog has been delete');
     }
 }

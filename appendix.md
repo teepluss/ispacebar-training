@@ -26,3 +26,6 @@ Facebook Group
 Collection Sort
 $ return $blogs->sortByDesc('id')->values()->all();
 > https://laravel.com/docs/master/collections
+
+Repository package
+> https://github.com/andersao/l5-repository

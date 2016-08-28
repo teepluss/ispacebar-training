@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Blog;
+use App\Observers\BlogObserver;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Blade;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blog::observe(BlogObserver::class);
     }
 
     /**
