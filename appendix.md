@@ -11,5 +11,14 @@ NodeJs
 Bower web package manager
 > https://bower.io/#install-bower
 
+Service upgrade Laravel
+> https://laravelshift.com/
+
+Laravel deployment with forge
+> https://forge.laravel.com/
+
+Laravel envoyer
+> https://envoyer.io/
+
 Facebook Group
 > https://www.facebook.com/groups/1781064745503327/?ref=bookmarks

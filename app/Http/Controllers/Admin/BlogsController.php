@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Blog;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use App\Http\Requests\StoreBlogPost;
 
 class BlogsController extends BaseAdminController
 {
@@ -16,9 +17,6 @@ class BlogsController extends BaseAdminController
     {
         $blogs = Blog::with(['user'])->get();
 
-        //return $blogs;
-
-
         return view('admin.blogs.index', [
             'blogs' => $blogs
         ]);
@@ -29,12 +27,9 @@ class BlogsController extends BaseAdminController
         return view('admin.blogs.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreBlogPost $request)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-        ]);
+        //$this->validate($request, []);
 
         $blog = new Blog();
         $blog->title = $request->title;
