@@ -23,9 +23,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+
+        // Post.
+        // App\Models\Blog::find(18)
+        //\Route::model('blog', 'App\Models\Blog');
     }
 
     /**

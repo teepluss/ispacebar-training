@@ -55,12 +55,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'mi
 
 });
 
+/**
+ * Demo controller.
+ */
+Route::group(['namespace' => 'Demo', 'prefix' => 'demo'], function() {
+    Route::get('/', 'DemoController@index');
+    Route::get('/collect', 'DemoController@collect');
+});
 
-
-
-// Route::group(['namespace' => 'Demo', 'prefix' => 'demo'], function() {
-//     Route::get('/', 'DemoController@index');
-// });
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

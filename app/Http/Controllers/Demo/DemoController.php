@@ -9,8 +9,26 @@ use Teepluss\Demo\Contracts\Request as DemoRequest;
 
 class DemoController extends Controller
 {
-    public function index(DemoRequest $demo)
+    // public function index(DemoRequest $demo)
+    // {
+    //     return view('demo.index');
+    // }
+
+    /**
+     * Laravel collection
+     * eg. https://laravel.com/docs/master/collections#method-filter
+     *
+     * @return void
+     */
+    public function collect()
     {
-        return view('demo.index');
+        $range = range(1, 100);
+        $collect = collect($range);
+
+        $data = $collect->filter(function($item, $key) {
+            return ($item % 2) == 0;
+        });
+
+        return $data;
     }
 }

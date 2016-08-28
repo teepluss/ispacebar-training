@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Blog;
 //use Illuminate\Http\Request;
 use App\Http\Requests\StoreBlogPost;
+use App\Http\Requests\UpdateBlogPost;
 
 class BlogsController extends BaseAdminController
 {
@@ -15,7 +16,7 @@ class BlogsController extends BaseAdminController
 
     public function index()
     {
-        $blogs = Blog::with(['user'])->get();
+        $blogs = Blog::with('user')->paginate();
 
         return view('admin.blogs.index', [
             'blogs' => $blogs
@@ -29,12 +30,7 @@ class BlogsController extends BaseAdminController
 
     public function store(StoreBlogPost $request)
     {
-        //$this->validate($request, []);
-
-        $blog = new Blog();
-        $blog->title = $request->title;
-        $blog->body = $request->body;
-        $blog->save();
+        $blog = Blog::create($request->all());
 
         // Stamp a user to blog.
         $authUser = $request->user();
@@ -49,21 +45,33 @@ class BlogsController extends BaseAdminController
 
     public function edit($id)
     {
+        $blog = Blog::findOrFail($id);
 
-        $t = new \TesseractOCR(storage_path('x.png'));
-        //$x = $t->whitelist(range('a', 'z'), range(0, 9), '-_@')->run();
-        dump($t->run());
-        //dump(get_class_methods($t));
-
+        return view('admin.blogs.edit', [
+            'blog' => $blog
+        ]);
     }
 
-    public function update($id)
+    public function update(UpdateBlogPost $request, $id)
     {
+        $blog = Blog::findOrFail($id);
+        $blog->title = $request->get('title');
+        $blog->body = $request->body;
+        $blog->save();
 
+        return redirect()->route('admin.blogs.edit', ['id' => $blog->id])
+                    ->with('success', 'Blog has been updated');
     }
 
+    /**
+     * Delete a blog using softDeletes
+     * eg.https://www.laravel.com/docs/5.3/eloquent
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function destroy($id)
     {
-
+        //
     }
 }

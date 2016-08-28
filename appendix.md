@@ -22,3 +22,7 @@ Laravel envoyer
 
 Facebook Group
 > https://www.facebook.com/groups/1781064745503327/?ref=bookmarks
+
+Collection Sort
+$ return $blogs->sortByDesc('id')->values()->all();
+> https://laravel.com/docs/master/collections

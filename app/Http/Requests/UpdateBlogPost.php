@@ -2,8 +2,20 @@
 
 namespace App\Http\Requests;
 
-class UpdateBlogPost extends StoreBlogPost
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateBlogPost extends FormRequest
 {
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -11,8 +23,9 @@ class UpdateBlogPost extends StoreBlogPost
      */
     public function rules()
     {
-        $rules = parent::rules();
-
-        return $rules;
+        return [
+            'title' => 'required',
+            'body' => 'required'
+        ];
     }
 }
