@@ -7,7 +7,7 @@ use App\Policies\BlogPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider
+class __AuthServiceProvider extends ServiceProvider
 {
     /**
      * The policy mappings for the application.

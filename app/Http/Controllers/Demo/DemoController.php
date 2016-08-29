@@ -52,8 +52,9 @@ class DemoController extends Controller
     public function user()
     {
         $user = \App\User::find(1);
+        dump($user->can('update-blog', \App\Models\Blog::find(10)));
 
-        dump($user->getMergedPermissions());
-        dump($user->can('superadmin'));
+        // dump($user->getMergedPermissions());
+        // dump($user->can('superadmin'));
     }
 }
