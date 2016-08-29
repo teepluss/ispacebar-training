@@ -25,6 +25,8 @@ class AlterBlogsTable extends Migration
      */
     public function down()
     {
-        // Drop columns
+        Schema::table('blogs', function ($table) {
+            $table->dropColumn(['created_at', 'updated_at']);
+        });
     }
 }

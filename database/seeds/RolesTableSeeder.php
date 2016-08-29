@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class RolesTableSeeder extends Seeder
@@ -11,19 +12,35 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('roles')->insert([
-            'name' => 'admin',
-            'permissions' => null
+        Role::create([
+            'slug' => 'member',
+            'name' => 'Member',
+            'permissions' => [
+                'blogs.view'    => 1,
+                'blogs.write'   => 1,
+                'blogs.approve' => 0
+            ]
         ]);
 
-        \DB::table('roles')->insert([
-            'name' => 'editor',
-            'permissions' => null
+        Role::create([
+            'slug' => 'editor',
+            'name' => 'Editor',
+            'permissions' => [
+                'blogs.view'    => 1,
+                'blogs.write'   => 1,
+                'blogs.approve' => 1
+            ]
         ]);
 
-        \DB::table('roles')->insert([
-            'name' => 'member',
-            'permissions' => null
+        Role::create([
+            'slug' => 'admin',
+            'name' => 'Admin',
+            'permissions' => [
+                'superadmin'    => 1,
+                'blogs.view'    => 1,
+                'blogs.write'   => 1,
+                'blogs.approve' => 1
+            ]
         ]);
     }
 }

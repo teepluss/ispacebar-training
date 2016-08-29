@@ -53,11 +53,7 @@ class DemoController extends Controller
     {
         $user = \App\User::find(1);
 
-
-
-        $allowed = $user->can('blogs.write');
-
-        dump($user->getPermissions());
-        dump($allowed);
+        dump($user->getMergedPermissions());
+        dump($user->can('superadmin'));
     }
 }

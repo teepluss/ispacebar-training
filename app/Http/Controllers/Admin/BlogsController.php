@@ -23,7 +23,7 @@ class BlogsController extends BaseAdminController
         if (request()->has('approved')) {
             $blogs->approved();
         }
-        $blogs = $blogs->paginate();
+        $blogs = $blogs->orderBy('id', 'desc')->paginate();
 
         return view('admin.blogs.index', [
             'blogs' => $blogs

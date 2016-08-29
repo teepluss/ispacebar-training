@@ -40,14 +40,10 @@
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                @if (isset($navigations))
+
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    @foreach($navigations as $name => $link)
-                    <li><a href="{{ route($link) }}">{{ $name }}</a></li>
-                    @endforeach
-                </ul>
-                @endif
+                @include('layouts.partials.app.navbar')
+
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">

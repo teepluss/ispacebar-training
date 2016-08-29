@@ -20,10 +20,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('admin.*', function($view) {
-            $navigations = config('navigation.admin');
-            $view->with('navigations', $navigations);
-        });
+        //
     }
 
     /**
@@ -33,6 +30,17 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        view()->composer('layouts.partials.app.navbar', function($view) {
+            $navigations = config('navigation.admin');
+            $navigations = array_map(function($item) {
+                // There's no link to map.
+                if ($item == '#') {
+                    return $item;
+                }
+                return route($item);
+            }, $navigations);
+
+            $view->with('navigations', $navigations);
+        });
     }
 }

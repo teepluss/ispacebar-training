@@ -2,8 +2,6 @@
 
 namespace App\Support\SMS;
 
-//use App\Support\SMS\Contracts\SenderInterface;
-
 class Sender
 {
     /**
@@ -71,6 +69,5 @@ class Sender
     public function send()
     {
         return $this->provider->send($this->to, $this->message);
-        //return "Message ".. " sent to ".$this->to;
     }
 }

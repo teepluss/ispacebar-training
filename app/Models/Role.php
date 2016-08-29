@@ -15,6 +15,20 @@ class Role extends Model
         'permissions' => 'array',
     ];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'permisssions'
+    ];
+
+    /**
+     * Relation many-to-may between user and role.
+     *
+     * @return object
+     */
     public function users()
     {
         return $this->belongsToMany(\App\User::class, 'role_user');

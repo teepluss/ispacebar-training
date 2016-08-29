@@ -30,7 +30,5 @@ class BlogPosted extends Mailable
     {
         return $this->from('example@101.dev')
                 ->view('emails.blogs.posted');
-
-        //return $this->view('view.name');
     }
 }

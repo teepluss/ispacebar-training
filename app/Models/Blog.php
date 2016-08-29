@@ -65,10 +65,10 @@ class Blog extends Model
      *
      * @param void
      */
-    public function setHashedAttribute($hashed)
-    {
-        $this->attributes['hashed'] = md5($hashed.$this->attributes['title'].$this->attributes['body']);
-    }
+    // public function setHashedAttribute($hashed)
+    // {
+    //     $this->attributes['hashed'] = md5($hashed.$this->attributes['title'].$this->attributes['body']);
+    // }
 
     /**
      * Scope approved.

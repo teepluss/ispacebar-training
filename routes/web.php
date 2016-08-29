@@ -15,9 +15,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('logviewer', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+/**
+ * Log viewer
+ */
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+/**
+ * Admin group.
+ */
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function() {
 
+    Route::get('/', [
+        'as' => 'home',
+        'uses' => 'HomeController@index'
+    ]);
+
+    /**
+     * Blog module.
+     */
     Route::group(['prefix' => 'blogs', 'as' => 'blogs.'], function() {
         Route::get('/', [
             'as' => 'index',

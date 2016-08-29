@@ -11,13 +11,24 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
+// $factory->define(App\User::class, function (Faker\Generator $faker) {
+//     static $password;
 
+//     return [
+//         'name' => $faker->name,
+//         'email' => $faker->safeEmail,
+//         'password' => $password ?: $password = bcrypt('secret'),
+//         'remember_token' => str_random(10),
+//     ];
+// });
+
+
+$factory->define(App\Models\Blog::class, function ($faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'title' => $faker->sentence,
+        'body' => $faker->paragraph,
+        'user_id' => function () {
+            return rand(1, 3);
+        }
     ];
 });

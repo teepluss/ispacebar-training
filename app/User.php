@@ -38,6 +38,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * Hash password wnen saving...
+     *
+     * @param string $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
      * Fullname accessor.
      *
      * @return string concat firstname and lastname.
@@ -47,11 +57,21 @@ class User extends Authenticatable
         return $this->attributes['first_name'].' '.$this->attributes['last_name'];
     }
 
+    /**
+     * User has many posts.
+     *
+     * @return object
+     */
     public function blogs()
     {
         return $this->hasMany(\App\Models\Blog::class);
     }
 
+    /**
+     * User has many roles.
+     *
+     * @return object
+     */
     public function roles()
     {
         return $this->belongsToMany(\App\Models\Role::class, 'role_user');

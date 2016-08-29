@@ -14,7 +14,7 @@ class AlterApprovedToBlogs extends Migration
     public function up()
     {
         Schema::table('blogs', function ($table) {
-            $table->timestamp('approved_at')->nullable()->after('created_at');
+            $table->timestamp('approved_at')->nullable()->after('updated_at');
         });
     }
 
@@ -25,6 +25,8 @@ class AlterApprovedToBlogs extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('blogs', function ($table) {
+            $table->dropColumn(['approved_at']);
+        });
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
+use App\Policies\BlogPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Models\Blog' => 'App\Policies\BlogPolict',
+        App\Models\Blog::class => App\Policies\BlogPolicy::class,
     ];
 
     /**
@@ -25,16 +27,22 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        $gates = [
-            'blogs.write',
-            'blogs.delete',
-            'blogs.approve'
-        ];
+        // By pass all permit for super admin.
+        Gate::before(function ($user, $ability) {
+            if ($user->isSuperAdmin()) {
+                return true;
+            }
+        });
 
-        foreach ($gates as $gate) {
-            Gate::define($gate, function ($user) use ($gate) {
-                return $user->hasPermission($gate);
-            });
+        // Define the gates.
+        $permissions = config('permissions');
+        foreach ($permissions as $group => $actions) {
+            foreach($actions as $action) {
+                $requestPermission = $group.".".$action;
+                Gate::define($requestPermission, function ($user) use ($requestPermission) {
+                    return $user->hasPermission($requestPermission);
+                });
+            }
         }
     }
 }

@@ -26,6 +26,8 @@ class AlterUsersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function ($table) {
+            $table->dropColumn(['first_name', 'last_name']);
+        });
     }
 }

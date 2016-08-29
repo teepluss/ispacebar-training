@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\User;
-use App\Models\Blog;
+use App\MOdels\Blog;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class BlogPolict
+class BlogPolicy
 {
     use HandlesAuthorization;
 
@@ -19,7 +19,7 @@ class BlogPolict
      */
     public function view(User $user, Blog $blog)
     {
-        //
+        return false;
     }
 
     /**
